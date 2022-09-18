@@ -1,7 +1,7 @@
 const countriesContainer = document.getElementById('countriesContainer')
 //State variables
 let currentPage = 0;
-let resultsPerPage = 10;
+let resultsPerPage = 35;
 let paginationEnabled = false;
 let countries = [];
 let sortByTotalDeathDirection = false;
