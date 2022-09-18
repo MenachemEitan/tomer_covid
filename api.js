@@ -13,6 +13,7 @@
       //If response is ok, parse it and return
       if(response.ok) {
           const responseBody = await response.json()
+          console.log(responseBody);
           return responseBody
       }
       //if not, throw an error

@@ -1,8 +1,8 @@
 const countriesContainer = document.getElementById('countriesContainer')
 //State variables
 let currentPage = 0;
-let resultsPerPage = 10;
-let paginationEnabled = false;
+let resultsPerPage = 15;
+let paginationEnabled = true;
 let countries = [];
 let sortByTotalDeathDirection = false;
 let sortByNameDirection = true;
@@ -18,7 +18,7 @@ async function getCountriesData() {
         loading.innerHTML = `Loading...`;
         countriesContainer.appendChild(loading);
         const data = await sendRequest(`https://api.covid19api.com/summary`); 
-        relevantInfo = data.Countries.map(item => ({ name: item.Country, totalDeaths: item.TotalDeaths, totalConfirmed: item.TotalConfirmed, NewDeaths: item.NewDeaths }));
+        relevantInfo = data.Countries.map(item => ({ name: item.Country, totalDeaths: item.TotalDeaths,NewDeaths:item.NewDeaths, totalConfirmed: item.TotalConfirmed, NewDeaths: item.NewDeaths }));
         countries = relevantInfo;
         //remove Loading
         loading.remove();
@@ -70,7 +70,8 @@ function changeCountriesInDom() {
         newCountry.innerHTML = `
                 <div class="line data-line ${flag ? 'greyedColor' : ''}">
                     <div class="cell">${country.name}</div>
-                    <div class="cell">${country.totalDeaths} </div>
+                    <div class="cell">${country.totalDeaths} ( ${country.NewDeaths} )</div>
+
                 </div>`;
         countriesContainer.appendChild(newCountry);;
         flag = !flag;
